@@ -3,34 +3,52 @@ package descriptografia;
 public class Descriptografia {
 
     public static String encriptar(String textoOriginal, int chave) {
-        String textoCifrado = "" ;
+        String textoCifrado = "";
 
         for (int i = 0; i < textoOriginal.length(); i++) {
-            textoCifrado += encriptar(textoOriginal.charAt(i), chave);
+            textoCifrado += encriptar1(textoOriginal.charAt(i), chave);
         }
-
         return textoCifrado;
     }
 
-    public static char encriptar(char charOriginal, int chave) {
+
+
+    public static String decriptar(String textoOriginal, int chave) {
+        String textoDescifrado = "";
+
+        for (int i = 0; i < textoOriginal.length(); i++) {
+            textoDescifrado += encriptar1(textoOriginal.charAt(i), - chave);
+        }
+        return textoDescifrado;
+    }
+
+
+
+    private static char encriptar1(char charOriginal, int chave) {
         char charCifrado;
 
 
         if (charOriginal >= 97 && charOriginal <= 122) {
-            charCifrado = (char) (charOriginal - chave) ;
+            charCifrado = (char) (charOriginal - chave);
 
 
             if (charCifrado < 97) {
-                charCifrado = (char)(charCifrado + 26);
+                charCifrado = (char) (charCifrado + 26);
 
             }
-        }
 
-        else {
+            if (charCifrado > 122) {
+                charCifrado = (char) (charCifrado - 26);
+
+            }
+
+
+        } else {
             charCifrado = charOriginal;
         }
 
         return charCifrado;
     }
-}
 
+
+}
